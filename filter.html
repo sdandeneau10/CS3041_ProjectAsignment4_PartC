@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Restaurant Selector </title>
+        <!-- Link Style Sheets Here -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+    </head>
+
+    <body>
+        <div id="content">
+            
+        <header>Find Your Restaurant</header>
+
+        <div id="attributes">
+            <div id="typeFood">Type of Food:
+                <input id="typeFoodInput" placeholder="default">
+            </div>
+            <div id="specCrave">Specific Craving:
+                <input id="cravingInput" placeholder="default">
+            </div>
+            <div id="dist">Distance:
+                <input id="distInput" placeholder="default">
+            </div>
+            <div id="price">Price:
+                <input id="priceInput" placeholder="default">
+            </div>
+            <div id="atmosphere">Atmosphere:
+                <input id="atmosphereInput" placeholder="default">
+            </div>
+            <div id="priorVisitsRating">Prior Visits Rating:
+                <input id="ratingInput" placeholder="default">
+            </div>
+        </div>
+
+        <button id="filterBtn" onClick="filterButtonClicked();">Search Using Filters</button>
+        <p> ** Note that for the depth of this prototype, you can only filter between the ratings of the 4 preloaded restaurants. ** </p>
+        <p> ** To find the preloaded attributes of these restaurants, visit the edit page, but note edits will not change the filtering function. **</p>
+        <button id="help" onClick="helpAlert()">Help</button>
+        <textarea id="restInfo"></textarea>
+        <button id="homeBtn" onClick="location.href='home.html';">Home</button>
+        </div>
+    </body>
+</html>
+<script>
+    function filterButtonClicked() {
+        if(document.getElementById("typeFoodInput").value != null) {
+            var typeFoodInput = document.getElementById("typeFoodInput").value;
+        }
+        if(document.getElementById("cravingInput").value != null) {
+            var craveInput = document.getElementById("cravingInput").value;
+        }
+        if(document.getElementById("distInput").value != null) {
+            var distInput = document.getElementById("distInput").value;
+        }
+        if(document.getElementById("priceInput").value != null) {
+            var priceInput = document.getElementById("priceInput").value;
+        }
+        if(document.getElementById("atmosphereInput").value != null) {
+            var atmInput = document.getElementById("atmosphereInput").value;
+        }
+        if(document.getElementById("ratingInput").value != null) {
+            var ratingInput = document.getElementById("ratingInput").value;
+        }
+        var text = findRestaurantByFilters(ratingInput);   
+        var textArea = document.getElementById("restInfo");
+        textArea.value = text;
+    }
+
+    function findRestaurantByFilters(rating) {
+        if(rating == "5") {
+            return "Boynton Restaurant \nAddress: 117 Highland St, Worcester, MA 01609 \nPhone: (508)756-8458 \nMenu: https://www.boytonrestaurant.com/";
+        } else if(rating == "3") {
+            return "Chilis \nAddress: Undefined\nPhone: Undefined\nMenu: Undefined";
+        } else if (rating == "2") {
+            return "Pizzeria Uno \nAddress: Undefined \nPhone: Undefined \nMenu: Undefined";
+        } else if (rating == "1") {
+            return "Texas Roadhouse \nAddress: Undefined \nPhone: Undefined \nMenu: Undefined";
+        } else {
+            return "Could not find a restaurant with the given filters."
+        }
+    }
+
+    function helpAlert() {
+        alert("Try filtering by rating! Each preloaded restaurant was given a rating attribute.")
+    }
+</script>

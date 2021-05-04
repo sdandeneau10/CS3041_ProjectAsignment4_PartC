@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Restaurant Selector </title>
+        <!-- Link Style Sheets Here -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+    </head>
+
+    <body>
+        <div id="content">
+            
+        <header>Restaurant Selector</header>
+        
+        <div id="buttons">
+            <button id="addButton" onClick="location.href='add.html';">Add</button>
+            <button id="editButton" onClick="location.href='edit.html';">Edit</button>
+            <button id="deleteButton" onClick="location.href='delete.html';">Delete</button>
+        </div>
+        
+        <button id="refresh" onClick="getNewRestaurant();" alert="The Application Currently Only Supports One Added Restaurant. Try to "> Refresh List </button>
+
+        <p id="restaurantList">
+        <ul id="Restaurants">
+            <header>Added Restaurants</header>
+            <li>Chilis</li>
+            <li>Texas Roadhouse</li>
+            <li>Boynton Restaurant</li>
+        </ul>
+
+        <button id="filterButton" onClick="location.href='filter.html';">Filter and Decide!</button>
+
+        </div>
+    </body>
+</html>
+<script>
+    function getNewRestaurant() {
+        var newRestaurant = JSON.parse(window.localStorage.getItem('newRestaurant'));
+        
+        if(newRestaurant != null) {
+            var name = newRestaurant.name;
+            var li = document.createElement("li");
+            li.innerHTML = name;
+            var ul = document.getElementById("Restaurants");
+            ul.appendChild(li);
+            window.localStorage.clear();
+        } else {
+            
+            alert("There are no new additions to the list!");
+        }
+    }
+</script>

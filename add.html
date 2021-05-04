@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Restaurant Selector </title>
+        <!-- Link Style Sheets Here -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+    </head>
+
+    <body>
+        <div id="content">
+        <header>Add a Restaurant</header>
+        <p id="restaurantList">
+        <ul id="Restaurants">
+            <h1>Added Restaurants</h1>
+            <li>Chilis</li>
+            <li>Pizzeria Uno</li>
+            <li>Texas Roadhouse</li>
+            <li>Boynton Restaurant</li>
+        </ul>
+
+        <div id="attributes">
+            <div class="row">Name:
+                <input id="nameInput" placeholder="default">
+            </div>
+            <div class="row">Address:
+                <input id="addressInput" placeholder="default">
+            </div>
+            <div class="row">Phone:
+                <input id="phoneInput" placeholder="default">
+            </div>
+            <div class="row">Menu:
+                <input id="menuInput" placeholder="default">
+            </div>
+            <div class="row">Type of Food:
+                <input id="typeFoodInput" placeholder="default">
+            </div>
+            <div class="row">Specific Craving:
+                <input id="cravingInput" placeholder="default">
+            </div>
+            <div class="row">Distance:
+                <input id="distInput" placeholder="default">
+            </div>
+            <div class="row">Price:
+                <input id="priceInput" placeholder="default">
+            </div>
+            <div class="row">Atmosphere:
+                <input id="atmosphereInput" placeholder="default">
+            </div>
+            <div class="row">Prior Visits Rating:
+                <input id="ratingInput" placeholder="default">
+            </div>
+        </div>
+
+        <button id="addToListBtn" onClick="addButtonClicked(); location.href='home.html';">Add to List</button>
+        <p> After adding a restaurant, you will have to refresh the list using the "Refresh List" button on the home page.</p>
+        <p> ** Note that for the depth of this prototype, you can only add one restaurant. ** </p>
+        <button id="homeBtn" onClick="location.href='home.html';">Home</button>
+        </div>
+    </body>
+</html>
+<script>
+    function addButtonClicked() {
+        if(document.getElementById("nameInput").value != null) {
+            var nameInput = document.getElementById("nameInput").value;
+        }
+        if(document.getElementById("addressInput").value != null) {
+            var addrInput = document.getElementById("addressInput").value;
+        }
+        if(document.getElementById("phoneInput").value != null) {
+            var phoneInput = document.getElementById("phoneInput").value;
+        }
+        if(document.getElementById("menuInput").value != null) {
+            var menuInput = document.getElementById("menuInput").value;
+        }
+        if(document.getElementById("typeFoodInput").value != null) {
+            var typeFoodInput = document.getElementById("typeFoodInput").value;
+        }
+        if(document.getElementById("cravingInput").value != null) {
+            var craveInput = document.getElementById("cravingInput").value;
+        }
+        if(document.getElementById("distInput").value != null) {
+            var distInput = document.getElementById("distInput").value;
+        }
+        if(document.getElementById("priceInput").value != null) {
+            var priceInput = document.getElementById("priceInput").value;
+        }
+        if(document.getElementById("atmosphereInput").value != null) {
+            var atmInput = document.getElementById("atmosphereInput").value;
+        }
+        if(document.getElementById("ratingInput").value != null) {
+            var ratingInput = document.getElementById("ratingInput").value;
+        }
+        
+
+        if(nameInput!="") {
+            rest = new Restaurant(nameInput, addrInput, phoneInput, menuInput, typeFoodInput, craveInput, distInput, priceInput, atmInput, ratingInput);
+            window.localStorage.setItem('newRestaurant', JSON.stringify({
+                name : rest.name,
+                address : rest.address,
+                phone : rest.phone,
+                menu : rest.menu,
+                typeFood : rest.typeFood,
+                craving : rest.specCrave,
+                dist : rest.dist,
+                price : rest.price,
+                atm : rest.atm,
+                rating : rest.rating
+            }));
+        } else {
+            alert("The name of the restaurant was left empty!");
+        }
+    }
+
+    class Restaurant {
+        constructor(name, address, phone, menu, typeFood, specCrave, dist, price, atm, rating) {
+            this.name = name;
+            this.address = address;
+            this.phone = phone;
+            this.menu = menu;
+            this.typeFood = typeFood;
+            this.specCrave = specCrave;
+            this.dist = dist;
+            this.price = price;
+            this.atm = atm;
+            this.rating = rating;
+        }
+    }
+</script>
